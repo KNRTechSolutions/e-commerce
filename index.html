@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Glowminds | Handcrafted Leather</title>
+<html lang="en"><head><meta charset="utf-8"><title>Leather Products | Handcrafted Leather</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -39,7 +39,7 @@ footer{padding:28px 5vw;border-top:1px solid var(--ln);color:var(--mut);display:
 #hud,#lab{color:#f1e6d0}#hud a{color:#e8c27a}#lab{border-color:#c29a4a}#joy i{background:#c29a4a}#joy{border-color:#c29a4a}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
 <a class="skip" href="#app">Skip to content</a>
-<header><a class="logo" href="#home">Glowminds</a>
+<header><a class="logo" href="#home">Leather Products</a>
 <nav aria-label="Main"><a href="#home">Home</a><a href="#showroom">3D showroom</a><a href="#catalogue">Catalogue</a><a href="#orders">Orders</a><a href="#help">Support</a><a href="#cart">Cart (<span id="cc" aria-live="polite">0</span>)</a></nav></header>
 <main id="app" tabindex="-1"></main>
 <div id="toast" role="status"></div>
@@ -128,7 +128,7 @@ product:id=>{const p=P.find(x=>x.id==id);if(!p)return"<h1>Product not found</h1>
 cart:()=>{const ids=Object.keys(cart);if(!ids.length)return`<h1>Your cart is empty</h1><p><a class="btn" href="#catalogue">Browse the catalogue</a></p>`;const t=totals();return`<h1>Your cart</h1><table><thead><tr><th>Item</th><th>Quantity</th><th>Price</th></tr></thead>${ids.map(id=>{const p=P.find(x=>x.id==id);return`<tr><td><a href="#product-${id}">${p.name}</a></td><td><span class="q"><button aria-label="Decrease ${p.name}" onclick="qty(${id},-1)">−</button>${cart[id]}<button aria-label="Increase ${p.name}" onclick="qty(${id},1)">+</button></span></td><td>${inr(pr(p)*cart[id])}</td></tr>`}).join("")}</table><p>Subtotal ${inr(t.sub)}<br>Discount −${inr(t.dis)}<br>Shipping ${t.ship?inr(t.ship):"Free"}<br>GST (18%) ${inr(t.tax)}<br><strong>Total ${inr(t.total)}</strong></p><a class="btn" href="#checkout">Checkout</a>`},
 checkout:()=>{if(!Object.keys(cart).length)return views.cart();const t=totals(),f=(id,l,ph="",ty="text")=>`<div><label for="${id}">${l}</label><input id="${id}" name="${id}" type="${ty}" ${ph} required aria-describedby="e-${id}"><div class="err" id="e-${id}"></div></div>`;return`<h1>Checkout</h1><div class="note">Demo mode: no payment is taken. The real build creates a Razorpay order on the server and confirms it by verified signature.</div><form id="co" novalidate><div class="fg">${f("name","Full name","autocomplete=name")}${f("phone","Mobile number","inputmode=numeric autocomplete=tel","tel")}${f("email","Email","autocomplete=email","email")}${f("building","House or building")}${f("street","Street")}${f("locality","Locality")}${f("city","City")}${f("district","District")}${f("state","State")}${f("pin","PIN code","inputmode=numeric maxlength=6")}</div><label for="country">Country</label><input id="country" value="India" readonly><fieldset style="border:1px solid var(--ln);margin:16px 0"><legend>Payment method</legend>${["Razorpay (UPI, cards, net banking)","Cash on delivery"].map((m,i)=>`<label style="color:var(--cr)"><input type="radio" name="pay" style="width:auto" ${i?"":"checked"}> ${m}</label>`).join("")}</fieldset><p>Payable: <strong>${inr(t.total)}</strong> · Estimated delivery in 3 to 7 days</p><button class="btn">Place demo order</button></form>`},
 orders:()=>{const o=store.get("gm-orders",[]);return`<h1>Order tracking</h1>${o.length?`<table><thead><tr><th>Order</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>${o.map(x=>`<tr><td>${x.id}</td><td>${x.date}</td><td>${inr(x.total)}</td><td>${x.status}</td></tr>`).join("")}</table>`:"<p>No orders yet.</p>"}<p class="mut">Sign-in, order history by account and admin status updates need the backend.</p>`},
-help:()=>`<h1>Contact and support</h1><p>Write to <a href="mailto:care@glowminds.example">care@glowminds.example</a> with your order number. Replace this address before launch.</p>`,
+help:()=>`<h1>Contact and support</h1><p>Write to <a href="mailto:care@Leather Products.example">care@Leather Products.example</a> with your order number. Replace this address before launch.</p>`,
 policy:()=>`<h1>Policies</h1><div class="note">Placeholder text. Have a lawyer review it before launch.</div><h2>Privacy</h2><p>We collect only what is needed to deliver orders, and never store card details; payments are handled by the gateway.</p><h2>Terms</h2><p>Prices are in INR and include GST at checkout. We may cancel orders that cannot be fulfilled and refund in full.</p><h2>Shipping and returns</h2><p>Free shipping above ₹3,000, otherwise ₹99. Unused items can be returned within 7 days of delivery.</p>`
 };
 function qty(id,d){cart[id]=(cart[id]||0)+d;const p=P.find(x=>x.id==id);if(cart[id]>p.stock)cart[id]=p.stock;if(cart[id]<=0)delete cart[id];saveCart();route()}
@@ -136,7 +136,7 @@ function route(){if(clean){clean();clean=null}const h=location.hash.slice(1)||"h
  document.querySelectorAll("nav:not(.chips) a").forEach(x=>x.getAttribute("href")==="#"+(k=="cat"||k=="product"?"catalogue":h)?x.setAttribute("aria-current","page"):x.removeAttribute("aria-current"));
  if(h=="showroom"){app.className="full";return showroom()}
  app.innerHTML=k=="cat"?views.catalogue(a):k=="product"?views.product(a):(views[h]||views.home)();
- document.title="Glowminds | "+(app.querySelector("h1")?.textContent||"Leather");window.scrollTo(0,0);
+ document.title="Leather Products | "+(app.querySelector("h1")?.textContent||"Leather");window.scrollTo(0,0);
  const f=$("#co");if(f)f.onsubmit=e=>{e.preventDefault();let ok=true;const rules={name:v=>v.trim().length>1,phone:v=>/^[6-9]\d{9}$/.test(v),email:v=>/^\S+@\S+\.\S+$/.test(v),pin:v=>/^[1-9]\d{5}$/.test(v)};
   f.querySelectorAll("input[required]").forEach(i=>{const bad=!i.value.trim()||(rules[i.id]&&!rules[i.id](i.value));$("#e-"+i.id).textContent=bad?"Enter a valid "+i.labels[0].textContent.toLowerCase():"";i.setAttribute("aria-invalid",bad);if(bad&&ok){ok=false;i.focus()}});
   if(!ok)return;const o=store.get("gm-orders",[]),t=totals();o.unshift({id:"GM"+Date.now().toString().slice(-6),date:new Date().toLocaleDateString("en-IN"),total:t.total,status:"Payment pending (demo)"});store.set("gm-orders",o);cart={};saveCart();location.hash="orders"}}
@@ -162,7 +162,7 @@ function showroom(){
  [-5.6,0,5.6].forEach(x=>{const lamp=new THREE.Mesh(new THREE.CylinderGeometry(.15,.45,.4,20,1,true),new THREE.MeshBasicMaterial({color:"#ffd58a",side:THREE.DoubleSide}));lamp.position.set(0,2.75,x);S.add(lamp);box(.02,.7,.02,"#c29a4a",0,3.15,x)});
  const tex=(t,w,h,fs,bg)=>{const c=document.createElement("canvas");c.width=w;c.height=h;const x=c.getContext("2d");x.fillStyle=bg||"#1c120b";x.fillRect(0,0,w,h);x.strokeStyle="#c29a4a";x.lineWidth=4;x.strokeRect(4,4,w-8,h-8);x.fillStyle="#f6ecd8";x.font=fs+"px Georgia";x.textAlign="center";x.textBaseline="middle";x.fillText(t,w/2,h/2);return new THREE.CanvasTexture(c)};
  const basic=t=>new THREE.MeshBasicMaterial({map:t});
- plane(4.5,.9,basic(tex("GLOWMINDS",640,128,80)),0,3,-9.78);
+ plane(4.5,.9,basic(tex("Leather Products",640,128,80)),0,3,-9.78);
  box(3,1,1,"#6b4423",0,.5,3);plane(2,.4,basic(tex("Checkout counter",400,80,36)),0,1.35,2.48);
  box(2.6,.8,1.2,"#6b4423",0,.4,-3);[["#7a3b24",-.8],["#4a2c17",-.3],["#a3732f",.2],["#2f1c10",.7]].forEach(([c,x])=>box(.4,.2,.3,c,x,.9,-3));
  [[-7,9],[7,9],[-3.4,9.2],[3.4,9.2]].forEach(([x,z])=>{box(.5,.5,.5,"#6b4423",x,.25,z);const l=new THREE.Mesh(new THREE.SphereGeometry(.45,12,10),mat("#2f5a34"));l.position.set(x,.95,z);S.add(l)});
