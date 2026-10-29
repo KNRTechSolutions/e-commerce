@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Glowminds | Handcrafted Leather</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#faf7f2;--ln:#e6dfd3;--br:#8a5f1c;--cr:#1f1710;--mut:#6b5d4c;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--cr);font:16px/1.6 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3,.logo{font-family:Fraunces,Georgia,serif;font-weight:500;line-height:1.2;margin:0 0 .5em}
+a{color:var(--br)}:focus-visible{outline:3px solid var(--br);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:var(--cr);color:#000;padding:8px;z-index:99}
+header{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding:14px 5vw;border-bottom:1px solid var(--ln)}
+.logo{font-size:1.6rem;color:var(--br);text-decoration:none;margin:0}
+nav{display:flex;gap:18px;flex-wrap:wrap;margin-left:auto}nav a{color:var(--cr);text-decoration:none;padding:4px 0}nav a[aria-current]{border-bottom:2px solid var(--br)}
+main{padding:32px 5vw;max-width:1200px;margin:auto}main.full{max-width:none;padding:0}
+.btn{background:var(--br);color:#fff;border:0;padding:12px 22px;font:600 1rem inherit;font-family:inherit;border-radius:3px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:none;color:var(--cr);border:1px solid var(--br)}
+.hero{padding:9vh 0;max-width:640px}.hero h1{font-size:clamp(2.4rem,7vw,4.5rem)}.hero p{color:var(--mut);font-size:1.15rem}.hero .btn{margin:6px 10px 6px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;padding:0;list-style:none}
+.card{background:var(--bg2);border:1px solid var(--ln);border-radius:4px;overflow:hidden}.card a{color:inherit;text-decoration:none;display:block}
+.sw{aspect-ratio:4/3;background:#f3ece0}.sw img{width:100%;height:100%;object-fit:cover;display:block}
+.card div.t{padding:12px 14px}.price{color:var(--br);font-weight:600}.mut{color:var(--mut)}s{color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.chips a{border:1px solid var(--ln);padding:4px 12px;border-radius:99px;text-decoration:none;color:var(--cr);font-size:.9rem}.chips a[aria-current]{background:var(--br);color:#fff}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+table{width:100%;border-collapse:collapse}td,th{padding:10px 6px;border-bottom:1px solid var(--ln);text-align:left}
+input,select{width:100%;padding:10px;background:var(--bg2);color:var(--cr);border:1px solid var(--ln);border-radius:3px;font:inherit}label{display:block;margin:12px 0 4px;font-size:.9rem;color:var(--mut)}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 16px}.err{color:#ff9a8a;font-size:.85rem;min-height:1em}
+.q{display:inline-flex;align-items:center;gap:8px}.q button{width:34px;height:34px;background:var(--bg2);color:var(--cr);border:1px solid var(--ln);border-radius:3px;cursor:pointer;font-size:1.1rem}
+.note{background:var(--bg2);border-left:3px solid var(--br);padding:10px 14px;margin:16px 0}
+#sr{position:relative;height:calc(100dvh - 70px);min-height:420px;background:#000;touch-action:none}#cv{width:100%;height:100%;display:block}
+#hud{position:absolute;left:12px;top:12px;max-width:min(360px,80%);background:#1c120bcc;padding:10px 14px;border-radius:4px;font-size:.9rem}
+#cross{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px;border:1px solid var(--cr);border-radius:50%;pointer-events:none}
+#lab{position:absolute;left:50%;bottom:90px;transform:translateX(-50%);background:#1c120bee;border:1px solid var(--br);padding:8px 14px;border-radius:4px;display:none;text-align:center}
+#joy{position:absolute;left:18px;bottom:24px;width:120px;height:120px;border-radius:50%;border:2px solid var(--br);background:#1c120b88;display:none}#joy i{position:absolute;left:40px;top:40px;width:40px;height:40px;border-radius:50%;background:var(--br)}
+@media(pointer:coarse){#joy{display:block}}
+#pp{position:absolute;inset:0;background:#000b;display:none;place-items:center;padding:16px;overflow:auto}#pp .box{background:#fff;color:#1f1710;max-width:960px;width:100%;border-radius:6px;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:center}#pp img{width:100%;border-radius:4px;background:#f3ece0}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--cr);color:#fff;padding:10px 18px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .2s}#toast.on{opacity:1}
+footer{padding:28px 5vw;border-top:1px solid var(--ln);color:var(--mut);display:flex;flex-wrap:wrap;gap:8px 22px}
+#hud,#lab{color:#f1e6d0}#hud a{color:#e8c27a}#lab{border-color:#c29a4a}#joy i{background:#c29a4a}#joy{border-color:#c29a4a}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<a class="skip" href="#app">Skip to content</a>
+<header><a class="logo" href="#home">Glowminds</a>
+<nav aria-label="Main"><a href="#home">Home</a><a href="#showroom">3D showroom</a><a href="#catalogue">Catalogue</a><a href="#orders">Orders</a><a href="#help">Support</a><a href="#cart">Cart (<span id="cc" aria-live="polite">0</span>)</a></nav></header>
+<main id="app" tabindex="-1"></main>
+<div id="toast" role="status"></div>
+<footer><a href="#policy">Privacy, terms, shipping and returns</a><a href="#help">Contact</a><span>Demo store: no real payments are taken.</span></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const CATS={belts:"Leather belts",wallets:"Wallets",cardholders:"Cardholders",handbags:"Handbags",totes:"Tote bags",crossbody:"Crossbody bags",backpacks:"Backpacks",briefcases:"Briefcases",duffles:"Travel duffle bags",laptop:"Laptop bags",keychains:"Keychains",passports:"Passport holders",journals:"Leather journals",gifts:"Gift collections",other:"Other accessories"};
+const COL={belts:"#6b4423",wallets:"#4a2c17",cardholders:"#8a5a2b",handbags:"#7a3b24",totes:"#9a6b3a",crossbody:"#5b3420",backpacks:"#3e2616",briefcases:"#2f1c10",duffles:"#7b5230",laptop:"#4d3320",keychains:"#a3732f",passports:"#6a3a20",journals:"#58341c",gifts:"#8b4a2b",other:"#6e4a2a"};
+const P=`belts|Harness Belt|2499|Full-grain buffalo, brass buckle|120x4 cm
+belts|Reversible Dress Belt|1999|Vegetable-tanned cowhide|115x3.5 cm
+wallets|Bifold Wallet|1799|Pull-up leather, 8 card slots|11x9 cm
+wallets|Long Zip Wallet|2299|Saffiano leather|20x10 cm
+cardholders|Slim Cardholder|999|Full-grain, 4 slots|10x7 cm
+handbags|Satchel Handbag|7499|Italian vegetable-tanned leather|30x24x12 cm
+handbags|Structured Top-Handle|8999|Calf leather, suede lining|28x20x11 cm
+totes|Everyday Tote|6499|Full-grain, cotton lining|38x30x12 cm
+crossbody|Mini Crossbody|4299|Nappa leather|21x15x6 cm
+crossbody|Saddle Crossbody|4999|Pull-up leather|24x17x7 cm
+backpacks|Roll-Top Backpack|9499|Waxed full-grain leather|42x30x14 cm
+briefcases|Classic Briefcase|11999|Buffalo leather, brass hardware|40x30x10 cm
+duffles|Weekender Duffle|13999|Oil-tanned leather|52x28x26 cm
+laptop|15-inch Laptop Sleeve Bag|6999|Padded full-grain|40x30x5 cm
+keychains|Brass Keyfob|599|Leather and solid brass|9x3 cm
+passports|Passport Holder|1299|Full-grain, card slots|14x10 cm
+journals|Refillable Journal|1499|Cover: vegetable-tanned leather|A5
+journals|Pocket Notebook Cover|899|Soft calf leather|A6
+gifts|Desk Gift Set|3999|Journal, cardholder, pen loop|Gift box
+gifts|Traveller Gift Set|4499|Passport holder, luggage tag, keyfob|Gift box
+other|Valet Tray|1899|Moulded leather|24x16 cm
+other|Cable Organiser|799|Leather|18x10 cm`.split("\n").map((l,i)=>{const[c,n,p,m,d]=l.split("|");return{id:i+1,cat:c,name:n,price:+p,mat:m,dim:d,disc:i%4==0?10:0,stock:(i*3)%7+(i==4?0:2)}});
+`belts|Braided Leather Belt|1799|Woven cowhide|110x3 cm
+wallets|Travel Organiser Wallet|3299|Full-grain, zip pocket|22x11 cm
+cardholders|Card Case with Pocket|1299|Pebbled leather|10x8 cm
+cardholders|Minimalist Money Clip|1099|Calf leather, steel clip|8x6 cm
+handbags|Bucket Handbag|6999|Soft nappa|26x26x14 cm
+totes|Zip-Top Work Tote|7299|Full-grain, laptop sleeve|40x32x13 cm
+totes|Market Tote|3999|Vegetable-tanned leather|36x30x10 cm
+crossbody|Camera Crossbody|5499|Pull-up leather|20x14x9 cm
+backpacks|Commuter Backpack|8499|Full-grain, padded straps|40x28x12 cm
+backpacks|Mini Backpack|5999|Soft calf leather|25x22x9 cm
+briefcases|Slim Document Case|8999|Saffiano leather|38x28x6 cm
+briefcases|Executive Attache|12999|Hand-stitched buffalo|42x31x12 cm
+duffles|Gym Duffle|9999|Waxed leather|48x25x24 cm
+duffles|Overnight Duffle|11999|Full-grain, shoe compartment|45x26x23 cm
+laptop|13-inch Messenger|5999|Distressed leather|36x27x8 cm
+laptop|Slim Laptop Folio|4499|Full-grain, magnetic close|35x25x3 cm
+keychains|Tag Keychain|499|Veg-tan leather|8x3 cm
+keychains|Carabiner Key Holder|799|Leather, steel clip|10x3 cm
+passports|Travel Wallet|2199|Pebbled leather|24x13 cm
+passports|Luggage Tag Set|899|Full-grain, 2 tags|10x6 cm
+journals|Travel Notebook|1999|Refillable, leather cover|A5
+gifts|Groom Gift Set|5499|Wallet, belt, keyfob|Gift box
+other|Leather Coasters, Set of 4|999|Vegetable-tanned leather|10 cm each`.split("\n").forEach(l=>{const[c,n,p,m,d]=l.split("|");P.push({id:0,cat:c,name:n,price:+p,mat:m,dim:d,disc:P.length%4==0?10:0,stock:(P.length*3)%7+2})});
+P.sort((a,b)=>Object.keys(CATS).indexOf(a.cat)-Object.keys(CATS).indexOf(b.cat)||a.id-b.id);P.forEach((p,i)=>p.id=i+1);
+const S='stroke="#f6ecd8" stroke-dasharray="5 4" opacity=".65" fill="none"',G="#d4a94a";
+const shade=(h,k)=>"#"+[1,3,5].map(i=>Math.max(0,Math.min(255,parseInt(h.slice(i,i+2),16)+k)).toString(16).padStart(2,"0")).join("");
+const ART={
+belts:(c,d)=>`<rect x="30" y="125" width="340" height="50" rx="8" fill="${c}"/><path d="M42 138H358M42 162H358" ${S}/><rect x="262" y="110" width="62" height="80" rx="8" fill="none" stroke="${G}" stroke-width="9"/><rect x="288" y="120" width="8" height="60" fill="${G}"/>${[60,95,130,165,200].map(x=>`<circle cx="${x}" cy="150" r="5" fill="${d}"/>`).join("")}`,
+wallets:(c,d)=>`<rect x="95" y="70" width="210" height="165" rx="14" fill="${c}"/><rect x="95" y="70" width="210" height="55" rx="14" fill="${d}"/><rect x="108" y="140" width="184" height="82" rx="9" ${S}/><circle cx="200" cy="125" r="9" fill="${G}"/>`,
+cardholders:(c,d)=>`<rect x="125" y="50" width="150" height="50" rx="6" fill="#fff"/><rect x="135" y="38" width="130" height="40" rx="6" fill="#c9b79a"/><rect x="110" y="85" width="180" height="150" rx="12" fill="${c}"/><path d="M110 125Q200 150 290 125" stroke="${d}" stroke-width="4" fill="none"/><rect x="122" y="145" width="156" height="78" rx="8" ${S}/>`,
+handbags:(c,d)=>`<path d="M140 105C140 20 260 20 260 105" fill="none" stroke="${d}" stroke-width="12"/><path d="M90 110H310L335 240Q200 258 65 240Z" fill="${c}"/><path d="M90 110H310L318 155H82Z" fill="${d}"/><rect x="185" y="143" width="30" height="24" rx="4" fill="${G}"/><path d="M95 190Q200 205 305 190" ${S}/>`,
+totes:(c,d)=>`<path d="M145 105C145 20 255 20 255 105" fill="none" stroke="${d}" stroke-width="12"/><path d="M85 100H315L300 250H100Z" fill="${c}"/><rect x="85" y="100" width="230" height="24" fill="${d}"/><path d="M112 150H288M115 225H285" ${S}/>`,
+crossbody:(c,d)=>`<path d="M115 125C60 10 340 10 285 125" fill="none" stroke="${d}" stroke-width="10"/><rect x="105" y="120" width="190" height="125" rx="16" fill="${c}"/><path d="M105 150Q200 195 295 150V136Q295 120 279 120H121Q105 120 105 136Z" fill="${d}"/><circle cx="200" cy="180" r="10" fill="${G}"/>`,
+backpacks:(c,d)=>`<path d="M140 90C55 120 65 240 130 252M260 90C345 120 335 240 270 252" fill="none" stroke="${d}" stroke-width="14"/><rect x="185" y="30" width="30" height="34" rx="12" fill="none" stroke="${d}" stroke-width="8"/><rect x="120" y="55" width="160" height="200" rx="45" fill="${c}"/><rect x="145" y="155" width="110" height="72" rx="14" fill="${d}"/><path d="M150 112H250" stroke="${G}" stroke-width="6"/><rect x="152" y="163" width="96" height="56" rx="9" ${S}/>`,
+briefcases:(c,d)=>`<path d="M160 95V62H240V95" fill="none" stroke="${d}" stroke-width="11"/><rect x="55" y="90" width="290" height="155" rx="14" fill="${c}"/><path d="M55 155H345" stroke="${d}" stroke-width="5"/><rect x="105" y="143" width="30" height="24" rx="3" fill="${G}"/><rect x="265" y="143" width="30" height="24" rx="3" fill="${G}"/><rect x="70" y="102" width="260" height="130" rx="9" ${S}/>`,
+duffles:(c,d)=>`<path d="M115 112C135 35 265 35 285 112" fill="none" stroke="${d}" stroke-width="11"/><path d="M35 140Q35 100 80 100H320Q365 100 365 140V205Q365 238 320 238H80Q35 238 35 205Z" fill="${c}"/><rect x="170" y="100" width="60" height="138" fill="${d}" opacity=".55"/><path d="M50 160H350" ${S}/><circle cx="200" cy="170" r="9" fill="${G}"/>`,
+laptop:(c,d)=>`<rect x="165" y="62" width="70" height="30" rx="12" fill="none" stroke="${d}" stroke-width="9"/><rect x="45" y="85" width="310" height="150" rx="14" fill="${c}"/><path d="M45 125H355" stroke="${d}" stroke-width="5"/><path d="M62 112H338M62 222H338" ${S}/><rect x="185" y="118" width="30" height="18" rx="4" fill="${G}"/>`,
+keychains:(c,d)=>`<circle cx="200" cy="68" r="36" fill="none" stroke="${G}" stroke-width="8"/><rect x="168" y="100" width="64" height="150" rx="16" fill="${c}"/><circle cx="200" cy="128" r="9" fill="${G}"/><rect x="178" y="145" width="44" height="95" rx="10" ${S}/>`,
+passports:(c,d)=>`<rect x="115" y="42" width="170" height="220" rx="12" fill="${c}"/><circle cx="200" cy="130" r="40" fill="none" stroke="${G}" stroke-width="4"/><path d="M160 130H240M200 90V170" stroke="${G}" stroke-width="3"/><rect x="127" y="54" width="146" height="196" rx="8" ${S}/>`,
+journals:(c,d)=>`<rect x="105" y="42" width="190" height="225" rx="10" fill="${c}"/><rect x="105" y="42" width="28" height="225" rx="8" fill="${d}"/><rect x="262" y="42" width="12" height="225" fill="${d}"/><rect x="105" y="170" width="190" height="14" fill="${G}"/><rect x="145" y="58" width="105" height="190" rx="6" ${S}/>`,
+gifts:(c,d)=>`<rect x="75" y="115" width="250" height="135" rx="6" fill="${c}"/><rect x="65" y="88" width="270" height="42" rx="6" fill="${d}"/><rect x="185" y="88" width="30" height="162" fill="${G}"/><path d="M200 88C140 28 115 85 200 88C285 85 260 28 200 88Z" fill="none" stroke="${G}" stroke-width="9"/>`,
+other:(c,d)=>`<rect x="60" y="105" width="280" height="140" rx="26" fill="${c}"/><rect x="82" y="125" width="236" height="98" rx="16" fill="${d}"/><rect x="92" y="135" width="216" height="78" rx="12" ${S}/><rect x="150" y="90" width="100" height="24" rx="6" fill="${G}"/>`};
+const img=p=>{const c=shade(COL[p.cat],(p.id%3-1)*16),d=shade(c,-34);return"data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 400 300"><defs><radialGradient id="g" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#f9f4ea"/><stop offset="1" stop-color="#e0d2bb"/></radialGradient></defs><rect width="400" height="300" fill="url(#g)"/><ellipse cx="200" cy="270" rx="140" ry="11" fill="#0003"/>${ART[p.cat](c,d)}</svg>`)};
+const $=s=>document.querySelector(s),app=$("#app"),inr=n=>"₹"+Math.round(n).toLocaleString("en-IN"),pr=p=>p.price*(1-p.disc/100);
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+let cart=store.get("gm-cart2",{}),clean=null;
+const saveCart=()=>{store.set("gm-cart2",cart);$("#cc").textContent=Object.values(cart).reduce((a,b)=>a+b,0)};
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1800)}
+function add(id){const p=P.find(x=>x.id==id);if(!p.stock)return toast("Sold out");if((cart[id]||0)>=p.stock)return toast("Only "+p.stock+" in stock");cart[id]=(cart[id]||0)+1;saveCart();toast(p.name+" added to cart")}
+function totals(){let sub=0,dis=0;for(const id in cart){const p=P.find(x=>x.id==id);sub+=p.price*cart[id];dis+=(p.price-pr(p))*cart[id]}const net=sub-dis,ship=!net||net>=3000?0:99,tax=net*.18;return{sub,dis,ship,tax,total:net+ship+tax}}
+const card=p=>`<li class="card"><a href="#product-${p.id}"><div class="sw"><img src="${img(p)}" alt="${p.name}, ${CATS[p.cat]}" loading="lazy"></div><div class="t"><h3>${p.name}</h3><span class="price">${inr(pr(p))}</span> ${p.disc?`<s>${inr(p.price)}</s>`:""}<br><span class="mut">${p.stock?p.stock+" in stock":"Sold out"}</span></div></a></li>`;
+const views={
+home:()=>`<section class="hero"><h1>Leather made slowly, sold the way a shop should be.</h1><p>Walk into our virtual boutique and handle every piece, or browse the catalogue. Your cart follows you either way.</p><a class="btn" href="#showroom">Enter the showroom</a><a class="btn ghost" href="#catalogue">Browse the catalogue</a></section><h2>Featured</h2><ul class="grid">${P.filter((p,i)=>i%4==1||i==5).slice(0,4).map(card).join("")}</ul>`,
+catalogue:(c)=>`<h1>${c?CATS[c]:"All products"}</h1><nav class="chips" aria-label="Categories"><a href="#catalogue" ${c?"":"aria-current=page"}>All</a>${Object.keys(CATS).map(k=>`<a href="#cat-${k}" ${k==c?"aria-current=page":""}>${CATS[k]}</a>`).join("")}</nav><ul class="grid">${P.filter(p=>!c||p.cat==c).map(card).join("")||"<li>No products in this category yet.</li>"}</ul>`,
+product:id=>{const p=P.find(x=>x.id==id);if(!p)return"<h1>Product not found</h1>";return`<p><a href="#cat-${p.cat}">← ${CATS[p.cat]}</a></p><div class="two"><div class="sw card"><img src="${img(p)}" alt="${p.name}, ${p.mat}"></div><div><h1>${p.name}</h1><p class="price" style="font-size:1.4rem">${inr(pr(p))} ${p.disc?`<s>${inr(p.price)}</s> (${p.disc}% off)`:""}</p><table><tr><th scope="row">Material</th><td>${p.mat}</td></tr><tr><th scope="row">Dimensions</th><td>${p.dim}</td></tr><tr><th scope="row">Availability</th><td>${p.stock?p.stock+" in stock":"Sold out"}</td></tr><tr><th scope="row">Shipping</th><td>Free above ₹3,000, else ₹99. Ships in 3 to 5 days.</td></tr></table><p><button class="btn" onclick="add(${p.id})" ${p.stock?"":"disabled"}>Add to cart</button> <a class="btn ghost" href="#cart">Go to cart</a></p></div></div>`},
+cart:()=>{const ids=Object.keys(cart);if(!ids.length)return`<h1>Your cart is empty</h1><p><a class="btn" href="#catalogue">Browse the catalogue</a></p>`;const t=totals();return`<h1>Your cart</h1><table><thead><tr><th>Item</th><th>Quantity</th><th>Price</th></tr></thead>${ids.map(id=>{const p=P.find(x=>x.id==id);return`<tr><td><a href="#product-${id}">${p.name}</a></td><td><span class="q"><button aria-label="Decrease ${p.name}" onclick="qty(${id},-1)">−</button>${cart[id]}<button aria-label="Increase ${p.name}" onclick="qty(${id},1)">+</button></span></td><td>${inr(pr(p)*cart[id])}</td></tr>`}).join("")}</table><p>Subtotal ${inr(t.sub)}<br>Discount −${inr(t.dis)}<br>Shipping ${t.ship?inr(t.ship):"Free"}<br>GST (18%) ${inr(t.tax)}<br><strong>Total ${inr(t.total)}</strong></p><a class="btn" href="#checkout">Checkout</a>`},
+checkout:()=>{if(!Object.keys(cart).length)return views.cart();const t=totals(),f=(id,l,ph="",ty="text")=>`<div><label for="${id}">${l}</label><input id="${id}" name="${id}" type="${ty}" ${ph} required aria-describedby="e-${id}"><div class="err" id="e-${id}"></div></div>`;return`<h1>Checkout</h1><div class="note">Demo mode: no payment is taken. The real build creates a Razorpay order on the server and confirms it by verified signature.</div><form id="co" novalidate><div class="fg">${f("name","Full name","autocomplete=name")}${f("phone","Mobile number","inputmode=numeric autocomplete=tel","tel")}${f("email","Email","autocomplete=email","email")}${f("building","House or building")}${f("street","Street")}${f("locality","Locality")}${f("city","City")}${f("district","District")}${f("state","State")}${f("pin","PIN code","inputmode=numeric maxlength=6")}</div><label for="country">Country</label><input id="country" value="India" readonly><fieldset style="border:1px solid var(--ln);margin:16px 0"><legend>Payment method</legend>${["Razorpay (UPI, cards, net banking)","Cash on delivery"].map((m,i)=>`<label style="color:var(--cr)"><input type="radio" name="pay" style="width:auto" ${i?"":"checked"}> ${m}</label>`).join("")}</fieldset><p>Payable: <strong>${inr(t.total)}</strong> · Estimated delivery in 3 to 7 days</p><button class="btn">Place demo order</button></form>`},
+orders:()=>{const o=store.get("gm-orders",[]);return`<h1>Order tracking</h1>${o.length?`<table><thead><tr><th>Order</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>${o.map(x=>`<tr><td>${x.id}</td><td>${x.date}</td><td>${inr(x.total)}</td><td>${x.status}</td></tr>`).join("")}</table>`:"<p>No orders yet.</p>"}<p class="mut">Sign-in, order history by account and admin status updates need the backend.</p>`},
+help:()=>`<h1>Contact and support</h1><p>Write to <a href="mailto:care@glowminds.example">care@glowminds.example</a> with your order number. Replace this address before launch.</p>`,
+policy:()=>`<h1>Policies</h1><div class="note">Placeholder text. Have a lawyer review it before launch.</div><h2>Privacy</h2><p>We collect only what is needed to deliver orders, and never store card details; payments are handled by the gateway.</p><h2>Terms</h2><p>Prices are in INR and include GST at checkout. We may cancel orders that cannot be fulfilled and refund in full.</p><h2>Shipping and returns</h2><p>Free shipping above ₹3,000, otherwise ₹99. Unused items can be returned within 7 days of delivery.</p>`
+};
+function qty(id,d){cart[id]=(cart[id]||0)+d;const p=P.find(x=>x.id==id);if(cart[id]>p.stock)cart[id]=p.stock;if(cart[id]<=0)delete cart[id];saveCart();route()}
+function route(){if(clean){clean();clean=null}const h=location.hash.slice(1)||"home",[k,a]=h.split("-");let v=h;app.className="";
+ document.querySelectorAll("nav:not(.chips) a").forEach(x=>x.getAttribute("href")==="#"+(k=="cat"||k=="product"?"catalogue":h)?x.setAttribute("aria-current","page"):x.removeAttribute("aria-current"));
+ if(h=="showroom"){app.className="full";return showroom()}
+ app.innerHTML=k=="cat"?views.catalogue(a):k=="product"?views.product(a):(views[h]||views.home)();
+ document.title="Glowminds | "+(app.querySelector("h1")?.textContent||"Leather");window.scrollTo(0,0);
+ const f=$("#co");if(f)f.onsubmit=e=>{e.preventDefault();let ok=true;const rules={name:v=>v.trim().length>1,phone:v=>/^[6-9]\d{9}$/.test(v),email:v=>/^\S+@\S+\.\S+$/.test(v),pin:v=>/^[1-9]\d{5}$/.test(v)};
+  f.querySelectorAll("input[required]").forEach(i=>{const bad=!i.value.trim()||(rules[i.id]&&!rules[i.id](i.value));$("#e-"+i.id).textContent=bad?"Enter a valid "+i.labels[0].textContent.toLowerCase():"";i.setAttribute("aria-invalid",bad);if(bad&&ok){ok=false;i.focus()}});
+  if(!ok)return;const o=store.get("gm-orders",[]),t=totals();o.unshift({id:"GM"+Date.now().toString().slice(-6),date:new Date().toLocaleDateString("en-IN"),total:t.total,status:"Payment pending (demo)"});store.set("gm-orders",o);cart={};saveCart();location.hash="orders"}}
+function showroom(){
+ app.innerHTML=`<div id="sr"><canvas id="cv" aria-label="3D leather showroom. A catalogue alternative is available from the navigation."></canvas><div id="cross"></div><div id="hud"><strong>Showroom</strong><br><span>Click the room to look around. WASD or arrows to walk. Click a product to enlarge it. Esc frees the mouse.</span><br><a href="#catalogue">Skip 3D, use the catalogue</a></div><div id="lab"></div><div id="joy" aria-label="Move joystick"><i></i></div><div id="pp"></div></div>`;
+ const cv=$("#cv"),R=new THREE.WebGLRenderer({canvas:cv,antialias:!matchMedia("(pointer:coarse)").matches}),S=new THREE.Scene(),C=new THREE.PerspectiveCamera(70,1,.1,60);
+ S.background=new THREE.Color("#1a0f08");S.fog=new THREE.Fog("#1a0f08",12,34);C.rotation.order="YXZ";C.position.set(0,1.6,7.5);
+ S.add(new THREE.AmbientLight("#ffe2b8",.85));S.add(new THREE.HemisphereLight("#fff0d0","#3b2616",.4));
+ [[0,2.8,-6],[0,2.8,0],[0,2.8,6]].forEach(p=>{const l=new THREE.PointLight("#ffcf8a",1,16);l.position.set(...p);S.add(l)});
+ const mat=c=>new THREE.MeshStandardMaterial({color:c,roughness:.7}),box=(w,h,d,c,x,y,z)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),typeof c=="string"?mat(c):c);m.position.set(x,y,z);S.add(m);return m};
+ const ctex=(w,h,fn,rx,ry)=>{const c=document.createElement("canvas");c.width=w;c.height=h;fn(c.getContext("2d"),w,h);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=4;return t};
+ const panel=ctex(256,512,(x,w,h)=>{x.fillStyle="#3d2415";x.fillRect(0,0,w,h);for(let i=0;i<40;i++){x.fillStyle=`rgba(${i%2?255:0},${i%2?200:0},${i%2?140:0},.04)`;x.fillRect(Math.random()*w,0,2,h)}x.strokeStyle="#c29a4a";x.lineWidth=3;x.strokeRect(24,30,w-48,h*.62);x.strokeStyle="#5e3a20";x.lineWidth=6;x.strokeRect(36,42,w-72,h*.62-24);x.fillStyle="#2a190d";x.fillRect(0,h*.78,w,h*.22);x.fillStyle="#c29a4a";x.fillRect(0,h*.78,w,4)},1,1);
+ const wallM=rx=>{const t=panel.clone();t.needsUpdate=true;t.repeat.set(rx,1);return new THREE.MeshStandardMaterial({map:t,roughness:.8})};
+ const plane=(w,h,m,x,y,z,rx,ry)=>{const p=new THREE.Mesh(new THREE.PlaneGeometry(w,h),m);p.position.set(x,y,z);p.rotation.set(rx||0,ry||0,0);S.add(p);return p};
+ plane(16,20,new THREE.MeshStandardMaterial({map:ctex(128,128,(x,w,h)=>{for(let i=0;i<2;i++)for(let j=0;j<2;j++){x.fillStyle=(i+j)%2?"#5a3820":"#4a2c17";x.fillRect(i*64,j*64,64,64);for(let k=0;k<6;k++){x.fillStyle="#0002";x.fillRect(i*64,j*64+k*11,64,1)}}x.strokeStyle="#2a190d";x.strokeRect(0,0,w,h)},8,10),roughness:.45}),0,0,0,-Math.PI/2);
+ plane(16,20,mat("#2a190d"),0,3.5,0,Math.PI/2);
+ plane(16,3.5,wallM(4),0,1.75,-10);plane(16,3.5,wallM(4),0,1.75,10,0,Math.PI);plane(20,3.5,wallM(5),-8,1.75,0,0,Math.PI/2);plane(20,3.5,wallM(5),8,1.75,0,0,-Math.PI/2);
+ plane(6,9,new THREE.MeshStandardMaterial({map:ctex(128,192,(x,w,h)=>{x.fillStyle="#6e1f26";x.fillRect(0,0,w,h);x.strokeStyle="#d4a94a";x.lineWidth=6;x.strokeRect(8,8,w-16,h-16);x.lineWidth=2;x.strokeRect(22,22,w-44,h-44);x.fillStyle="#d4a94a33";x.beginPath();x.moveTo(w/2,50);x.lineTo(w-40,h/2);x.lineTo(w/2,h-50);x.lineTo(40,h/2);x.fill()},1,1),roughness:.95}),0,.012,.5,-Math.PI/2);
+ for(let i=0;i<5;i++)box(16,.18,.3,"#2a190d",0,3.4,-8+i*4);
+ [-7.95,7.95].forEach(x=>{box(.08,.14,20,"#c29a4a",x,3.4,0);box(.08,.14,20,"#c29a4a",x,.08,0)});box(16,.14,.08,"#c29a4a",0,3.4,-9.95);
+ for(let j=0;j<6;j++){box(.3,3.4,.3,"#4a2c17",-7.85,1.7,-10+4*j+(j==0?.2:j==5?-.2:0));box(.3,3.4,.3,"#4a2c17",7.85,1.7,-10+4*j+(j==0?.2:j==5?-.2:0))}
+ [-7,-4.2,-1.4,1.4,4.2,7].forEach(x=>box(.3,3.4,.3,"#4a2c17",x*.98,1.7,-9.85));
+ [-5.6,0,5.6].forEach(x=>{const lamp=new THREE.Mesh(new THREE.CylinderGeometry(.15,.45,.4,20,1,true),new THREE.MeshBasicMaterial({color:"#ffd58a",side:THREE.DoubleSide}));lamp.position.set(0,2.75,x);S.add(lamp);box(.02,.7,.02,"#c29a4a",0,3.15,x)});
+ const tex=(t,w,h,fs,bg)=>{const c=document.createElement("canvas");c.width=w;c.height=h;const x=c.getContext("2d");x.fillStyle=bg||"#1c120b";x.fillRect(0,0,w,h);x.strokeStyle="#c29a4a";x.lineWidth=4;x.strokeRect(4,4,w-8,h-8);x.fillStyle="#f6ecd8";x.font=fs+"px Georgia";x.textAlign="center";x.textBaseline="middle";x.fillText(t,w/2,h/2);return new THREE.CanvasTexture(c)};
+ const basic=t=>new THREE.MeshBasicMaterial({map:t});
+ plane(4.5,.9,basic(tex("GLOWMINDS",640,128,80)),0,3,-9.78);
+ box(3,1,1,"#6b4423",0,.5,3);plane(2,.4,basic(tex("Checkout counter",400,80,36)),0,1.35,2.48);
+ box(2.6,.8,1.2,"#6b4423",0,.4,-3);[["#7a3b24",-.8],["#4a2c17",-.3],["#a3732f",.2],["#2f1c10",.7]].forEach(([c,x])=>box(.4,.2,.3,c,x,.9,-3));
+ [[-7,9],[7,9],[-3.4,9.2],[3.4,9.2]].forEach(([x,z])=>{box(.5,.5,.5,"#6b4423",x,.25,z);const l=new THREE.Mesh(new THREE.SphereGeometry(.45,12,10),mat("#2f5a34"));l.position.set(x,.95,z);S.add(l)});
+ const blocks=[[-1.7,1.7,2.4,3.6],[-1.5,1.5,-3.7,-2.3]],items=[],backs=[];
+ [-7.2,7.2].forEach(x=>[1,2].forEach(y=>box(.9,.1,20,"#6b4423",x,y,0)));[1,2].forEach(y=>box(16,.1,.9,"#6b4423",0,y,-9.2));
+ const place=(b,s)=>{const w=Math.floor(b/5),k=b%5;return w==0?[-7.1,-8+4*k+(s-1)*1.1,1,0,Math.PI/2]:w==1?[7.1,-8+4*k+(s-1)*1.1,-1,0,-Math.PI/2]:[-5.6+2.8*k+(s-1)*.85,-9.1,0,1,0]};
+ Object.keys(CATS).forEach((k,b)=>{const[x,z,nx,nz,ry]=place(b,1);plane(2.4,.5,basic(tex(CATS[k],512,100,50)),x+nx*.2,2.6,z+nz*.2,0,ry)});
+ P.forEach((p,i)=>{const[x,z,nx,nz,ry]=place(Math.floor(i/3),i%3),im=new Image(),t=new THREE.Texture(im);im.onload=()=>{t.needsUpdate=true};im.src=img(p);
+  const dk=mat("#2a190d"),m=box(.8,.6,.05,[dk,dk,dk,dk,new THREE.MeshBasicMaterial({map:t}),dk],x,1.5,z);m.rotation.y=ry;p.n=[nx,nz];
+  const bk=box(.9,.7,.04,"#b8923f",x-nx*.03,1.5,z-nz*.03);bk.rotation.y=ry;backs.push(bk);
+  const l=plane(.9,.16,basic(tex(p.name.slice(0,24),288,52,24)),x+nx*.05,1.08,z+nz*.05,0,ry);items.push(m)});
+ let yaw=0,pitch=0,keys={},jx=0,jy=0,tw=null,drag=null,lock=false,raf,mx=99,my=0,hov=null,rc=new THREE.Raycaster();
+ const size=()=>{const r=cv.parentElement;R.setSize(r.clientWidth,r.clientHeight,false);R.setPixelRatio(Math.min(devicePixelRatio,1.5));C.aspect=r.clientWidth/r.clientHeight;C.updateProjectionMatrix()};size();
+ const offs=[],on=(t,e,f,o)=>{t.addEventListener(e,f,o);offs.push(()=>t.removeEventListener(e,f,o))};
+ on(window,"resize",size);on(window,"keydown",e=>{keys[e.code]=1;if(e.code=="Escape")$("#pp").style.display="none"});on(window,"keyup",e=>keys[e.code]=0);
+ on(document,"pointerlockchange",()=>lock=document.pointerLockElement===cv);
+ on(document,"mousemove",e=>{if(lock){yaw-=e.movementX*.002;pitch=Math.max(-1.2,Math.min(1.2,pitch-e.movementY*.002))}});
+ const pick=(x,y)=>{rc.setFromCamera({x,y},C);const h=rc.intersectObjects(items)[0];return h&&h.distance<9?h.object.userData.p||P[items.indexOf(h.object)]:null};
+ on(cv,"pointerdown",e=>{drag={x:e.clientX,y:e.clientY,moved:0}});
+ on(cv,"pointermove",e=>{const r=cv.getBoundingClientRect();if(e.pointerType=="mouse"&&!lock){mx=(e.clientX-r.left)/r.width*2-1;my=-((e.clientY-r.top)/r.height)*2+1}if(drag&&e.pointerType!="mouse"){yaw-=(e.clientX-drag.x)*.005;pitch=Math.max(-1.2,Math.min(1.2,pitch-(e.clientY-drag.y)*.005));drag.moved+=Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y);drag.x=e.clientX;drag.y=e.clientY}});
+ on(cv,"pointerup",e=>{if(!drag||drag.moved>8){drag=null;return}drag=null;const r=cv.getBoundingClientRect(),touch=e.pointerType!="mouse",p=pick(lock?0:(e.clientX-r.left)/r.width*2-1,lock?0:-((e.clientY-r.top)/r.height)*2+1);
+  if(p)inspect(p);else if(!touch&&!lock)cv.requestPointerLock()});
+ function inspect(p){const[nx,nz]=p.n,m=items[p.id-1];tw={x0:C.position.x,z0:C.position.z,y0:yaw,t:{x:m.position.x+nx*1.7,z:m.position.z+nz*1.7,yaw:Math.atan2(nx,nz)},s:performance.now()};if(document.pointerLockElement)document.exitPointerLock();
+  const pp=$("#pp");pp.style.display="grid";pp.innerHTML=`<div class="box" role="dialog" aria-modal="true" aria-label="${p.name}"><img src="${img(p)}" alt="${p.name}, ${p.mat}"><div><h2>${p.name}</h2><p class="mut">${CATS[p.cat]}</p><p class="price" style="font-size:1.4rem">${inr(pr(p))} ${p.disc?`<s>${inr(p.price)}</s> (${p.disc}% off)`:""}</p><p>${p.mat}<br>Dimensions: ${p.dim}<br>${p.stock?p.stock+" in stock":"Sold out"}</p><p><button class="btn" id="ad" ${p.stock?"":"disabled"}>Add to cart</button> <a class="btn ghost" href="#cart">Go to cart</a></p><p><a href="#product-${p.id}">Full details</a> <button class="btn ghost" id="cl">Close</button></p></div></div>`;
+  $("#ad").onclick=()=>{add(p.id);$("#ad").textContent="Added. Add another"};$("#cl").onclick=()=>{pp.style.display="none";cv.focus()};$("#ad").focus()}
+ const joy=$("#joy"),kn=joy.firstElementChild,jm=e=>{const r=joy.getBoundingClientRect();let dx=(e.clientX-r.left-60)/40,dy=(e.clientY-r.top-60)/40,l=Math.hypot(dx,dy);if(l>1){dx/=l;dy/=l}jx=dx;jy=dy;kn.style.transform=`translate(${dx*30}px,${dy*30}px)`};
+ joy.onpointerdown=e=>{joy.setPointerCapture(e.pointerId);jm(e)};joy.onpointermove=e=>{if(joy.hasPointerCapture(e.pointerId))jm(e)};joy.onpointerup=()=>{jx=jy=0;kn.style.transform=""};
+ let last=performance.now();const hit=(x,z)=>Math.abs(x)>6.2||Math.abs(z)>9||blocks.some(([a,b,c,d])=>x>a-.3&&x<b+.3&&z>c-.3&&z<d+.3);
+ function frame(now){raf=requestAnimationFrame(frame);const dt=Math.min((now-last)/1000,.05);last=now;
+  if(tw){const k=Math.min((now-tw.s)/700,1),e=k*(2-k);C.position.x=tw.x0+(tw.t.x-tw.x0)*e;C.position.z=tw.z0+(tw.t.z-tw.z0)*e;let d=tw.t.yaw-tw.y0;d=Math.atan2(Math.sin(d),Math.cos(d));yaw=tw.y0+d*e;pitch*=.9;if(k==1)tw=null}
+  else{const f=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0)-jy,s=(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0)+jx;
+   const vx=(-Math.sin(yaw)*f+Math.cos(yaw)*s)*3*dt,vz=(-Math.cos(yaw)*f-Math.sin(yaw)*s)*3*dt;if(!hit(C.position.x+vx,C.position.z))C.position.x+=vx;if(!hit(C.position.x,C.position.z+vz))C.position.z+=vz}
+  C.rotation.set(pitch,yaw,0);const h=pick(lock?0:mx,lock?0:my),lb=$("#lab");
+  if(h!==hov){if(hov)backs[hov.id-1].material.color.set("#b8923f");if(h)backs[h.id-1].material.color.set("#ffe9a0");hov=h}
+  if(h){lb.style.display="block";lb.innerHTML=`<strong>${h.name}</strong> ${inr(pr(h))}<br>${h.stock?h.stock+" in stock":"Sold out"} · click to enlarge`}else lb.style.display="none";R.render(S,C)}
+ raf=requestAnimationFrame(frame);cv.tabIndex=0;
+ clean=()=>{cancelAnimationFrame(raf);offs.forEach(f=>f());R.dispose();if(document.pointerLockElement)document.exitPointerLock()}}
+addEventListener("hashchange",route);saveCart();route();
+</script></body></html>
