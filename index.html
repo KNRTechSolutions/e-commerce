@@ -17,7 +17,9 @@
 <meta name="robots" content="index, follow, noai, noimageai">
 <meta name="tdm-reservation" content="1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233d2415'/%3E%3Crect x='6' y='6' width='52' height='52' rx='10' fill='none' stroke='%23c29a4a' stroke-width='2' stroke-dasharray='4 3'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='bold' text-anchor='middle' fill='%23e8c27a'%3EP%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2a1a10">
+<meta name="format-detection" content="telephone=no"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233d2415'/%3E%3Crect x='6' y='6' width='52' height='52' rx='10' fill='none' stroke='%23c29a4a' stroke-width='2' stroke-dasharray='4 3'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='bold' text-anchor='middle' fill='%23e8c27a'%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#fff;--bg2:#faf7f2;--ln:#e6dfd3;--br:#8a5f1c;--cr:#1f1710;--mut:#6b5d4c;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -33,45 +35,67 @@ main{padding:32px 5vw;max-width:1200px;margin:auto}main.full{max-width:none;padd
 .btn{background:var(--br);color:#fff;border:0;padding:12px 22px;font:600 1rem inherit;font-family:inherit;border-radius:3px;cursor:pointer;text-decoration:none;display:inline-block}
 .btn.ghost{background:none;color:var(--cr);border:1px solid var(--br)}
 .hero{padding:9vh 0;max-width:640px}.hero h1{font-size:clamp(2.4rem,7vw,4.5rem)}.hero p{color:var(--mut);font-size:1.15rem}.hero .btn{margin:6px 10px 6px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;padding:0;list-style:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:20px;padding:0;list-style:none}
 .card{background:var(--bg2);border:1px solid var(--ln);border-radius:4px;overflow:hidden}.card a{color:inherit;text-decoration:none;display:block}
 .sw{aspect-ratio:4/3;background:#fff}.sw img{width:100%;height:100%;object-fit:contain;display:block}
 .card div.t{padding:12px 14px}.price{color:var(--br);font-weight:600}.mut{color:var(--mut)}s{color:var(--mut)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.chips a{border:1px solid var(--ln);padding:4px 12px;border-radius:99px;text-decoration:none;color:var(--cr);font-size:.9rem}.chips a[aria-current]{background:var(--br);color:#fff}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:32px}
 table{width:100%;border-collapse:collapse}td,th{padding:10px 6px;border-bottom:1px solid var(--ln);text-align:left}
 input,select{width:100%;padding:10px;background:var(--bg2);color:var(--cr);border:1px solid var(--ln);border-radius:3px;font:inherit}label{display:block;margin:12px 0 4px;font-size:.9rem;color:var(--mut)}
-.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 16px}.err{color:#ff9a8a;font-size:.85rem;min-height:1em}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:0 16px}.err{color:#ff9a8a;font-size:.85rem;min-height:1em}
 .q{display:inline-flex;align-items:center;gap:8px}.q button{width:34px;height:34px;background:var(--bg2);color:var(--cr);border:1px solid var(--ln);border-radius:3px;cursor:pointer;font-size:1.1rem}
 .note{background:var(--bg2);border-left:3px solid var(--br);padding:10px 14px;margin:16px 0}
-#sr{position:relative;height:calc(100dvh - 70px);min-height:420px;background:#000;touch-action:none}#cv{width:100%;height:100%;display:block}
+#sr{position:relative;height:calc(100dvh - 70px);min-height:300px;background:#000;touch-action:none}#cv{width:100%;height:100%;display:block}
 #hud{position:absolute;left:12px;top:12px;max-width:min(360px,80%);background:#1c120bcc;padding:10px 14px;border-radius:4px;font-size:.9rem}
 #cross{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px;border:1px solid var(--cr);border-radius:50%;pointer-events:none}
 #lab{position:absolute;left:50%;bottom:90px;transform:translateX(-50%);background:#1c120bee;border:1px solid var(--br);padding:8px 14px;border-radius:4px;display:none;text-align:center}
 #joy{position:absolute;left:18px;bottom:24px;width:120px;height:120px;border-radius:50%;border:2px solid var(--br);background:#1c120b88;display:none}#joy i{position:absolute;left:40px;top:40px;width:40px;height:40px;border-radius:50%;background:var(--br)}
 @media(pointer:coarse){#joy{display:block}}
-#pp{position:absolute;inset:0;background:#000b;display:none;place-items:center;padding:16px;overflow:auto}#pp .box{background:#fff;color:#1f1710;max-width:960px;width:100%;border-radius:6px;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:center}#pp img{width:100%;border-radius:4px;background:#f3ece0}
+#pp{position:absolute;inset:0;background:#000b;display:none;place-items:center;padding:16px;overflow:auto}#pp .box{background:#fff;color:#1f1710;max-width:960px;width:100%;border-radius:6px;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;align-items:center}#pp img{width:100%;border-radius:4px;background:#f3ece0}
 #toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--cr);color:#fff;padding:10px 18px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .2s}#toast.on{opacity:1}
 footer{padding:28px 5vw;border-top:1px solid var(--ln);color:var(--mut);display:flex;flex-wrap:wrap;gap:8px 22px}
 #hud,#lab{color:#f1e6d0}#hud a{color:#e8c27a}#lab{border-color:#c29a4a}#joy i{background:#c29a4a}#joy{border-color:#c29a4a}#cp{position:absolute;right:12px;top:12px;z-index:3}#pp{z-index:5}.top{background:#2a1a10;color:#f1e6d0;text-align:center;font-size:.85rem;padding:7px 12px}
 .logo{display:flex;align-items:center;gap:12px;color:var(--cr)}.logo svg{width:50px;height:50px;flex:none}.logo b{display:block;font:500 1.6rem/1 Fraunces,Georgia,serif}.logo small{display:block;color:var(--br);font:600 .68rem "Instrument Sans",sans-serif;letter-spacing:.22em;text-transform:uppercase;margin-top:5px}
-.hero2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:36px;align-items:center;padding:28px 0 36px}.hero2 h1{font-size:clamp(2.2rem,5vw,3.6rem)}.eyebrow{color:var(--br);letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;font-weight:600;margin:0 0 10px}.lead{color:var(--mut);font-size:1.1rem}.ticks{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;padding:0;color:var(--mut)}.ticks li::before{content:"✓ ";color:var(--br)}
+.hero2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:36px;align-items:center;padding:28px 0 36px}.hero2 h1{font-size:clamp(2.2rem,5vw,3.6rem)}.eyebrow{color:var(--br);letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;font-weight:600;margin:0 0 10px}.lead{color:var(--mut);font-size:1.1rem}.ticks{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;padding:0;color:var(--mut)}.ticks li::before{content:"✓ ";color:var(--br)}
 .collage{display:grid;grid-template-columns:1fr 1fr;gap:12px}.collage a{display:block;border-radius:8px;overflow:hidden;border:1px solid var(--ln);aspect-ratio:1}.collage img{width:100%;height:100%;object-fit:cover;display:block}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin:0 0 36px}.stats div{background:var(--bg2);border:1px solid var(--ln);border-radius:6px;padding:18px;text-align:center;color:var(--mut)}.stats strong{display:block;font:500 2rem Fraunces,serif;color:var(--br)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:16px;margin:0 0 36px}.stats div{background:var(--bg2);border:1px solid var(--ln);border-radius:6px;padding:18px;text-align:center;color:var(--mut)}.stats strong{display:block;font:500 2rem Fraunces,serif;color:var(--br)}
 .tile .sw{aspect-ratio:1}.tile b{display:block;padding:10px 12px}
-.band{background:#2a1a10;color:#f1e6d0;border-radius:8px;padding:40px 5vw;margin:44px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:center}.band h2{color:#f1e6d0;margin-top:0}.band p{color:#d8c9ad}.band .btn{background:#e8c27a;color:#1c120b}.band .btn.ghost{background:none;color:#f1e6d0;border:1px solid #e8c27a}
-.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-bottom:36px}.feat div{border-top:3px solid var(--br);padding-top:12px}.feat h3{margin-bottom:.3em}
+.band{background:#2a1a10;color:#f1e6d0;border-radius:8px;padding:40px 5vw;margin:44px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:20px;align-items:center}.band h2{color:#f1e6d0;margin-top:0}.band p{color:#d8c9ad}.band .btn{background:#e8c27a;color:#1c120b}.band .btn.ghost{background:none;color:#f1e6d0;border:1px solid #e8c27a}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:20px;margin-bottom:36px}.feat div{border-top:3px solid var(--br);padding-top:12px}.feat h3{margin-bottom:.3em}
 .mgr{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:28px;align-items:center;background:var(--bg2);border:1px solid var(--ln);border-radius:8px;padding:24px;margin:40px 0}.mgr img{width:100%;height:auto;display:block}
 details{border-bottom:1px solid var(--ln);padding:12px 0}summary{cursor:pointer;font-weight:600}details p{color:var(--mut);margin:8px 0 0}
 @media(max-width:560px){.mgr{grid-template-columns:1fr}.mgr img{max-width:200px;margin:auto}}
-img{-webkit-user-drag:none}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+img{-webkit-user-drag:none}
+/* ---- Device compatibility: touch sizes, notches, small and short screens, older browsers ---- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-x:hidden;overflow-wrap:break-word}
+a,button,summary,label,input{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+header,main,footer{padding-left:max(5vw,env(safe-area-inset-left));padding-right:max(5vw,env(safe-area-inset-right))}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+nav a{min-height:44px;display:inline-flex;align-items:center}
+.q button{width:44px;height:44px}.chips a{padding:8px 14px}summary{padding:6px 0}
+#sr,#sr *{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}#pp,#pp *{-webkit-user-select:text;user-select:text}
+#pp{top:0;right:0;bottom:0;left:0}#pp img{max-height:60vh;object-fit:contain}
+#hud .ht{display:none}
+@media(pointer:coarse){#hud .hd{display:none}#hud .ht{display:inline}}
+@media(max-width:720px){nav{flex-basis:100%;margin-left:0;flex-wrap:nowrap;overflow-x:auto;gap:14px;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;flex:none}.logo svg{width:40px;height:40px}.logo b{font-size:1.25rem}}
+@media(max-width:600px){#hud{max-width:58%;font-size:.8rem;padding:8px 10px}#cp{padding:8px 10px;font-size:.8rem;max-width:40%;min-height:0;text-align:center}td,th{padding:8px 4px;font-size:.92rem}#lab{bottom:150px;width:max-content;max-width:92%}#pp img{max-height:38vh}}
+@media(max-height:520px){#hud .hd,#hud .ht{display:none}}
+@supports not (aspect-ratio:1){.sw{position:relative;height:0;padding-bottom:75%}.sw img{position:absolute;left:0;top:0}.collage a{position:relative;height:0;padding-bottom:100%}.collage img{position:absolute;left:0;top:0}}
+/* ---- Fixes found in testing: pop-up fits any screen, compact header in the showroom ---- */
+#pp{grid-template-columns:minmax(0,1fr);place-items:start center}
+#pp .box{margin:auto 0;min-width:0}#pp .box>*{min-width:0}#pp img{max-width:100%!important}
+.top{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#lab{pointer-events:none}#pp{touch-action:pan-y;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+@media(max-width:600px),(max-height:520px){body.sr .top{display:none}body.sr header{padding-top:6px;padding-bottom:6px;gap:6px 12px}body.sr .logo small{display:none}body.sr nav a{min-height:36px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
 <a class="skip" href="#app">Skip to content</a>
 <div class="top">Free shipping above ₹3,000 · 7-day returns · Handcrafted leather goods</div><header><a class="logo" href="#home" aria-label="Pure Leather Shop home"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="#3d2415"/><circle cx="32" cy="32" r="26" fill="none" stroke="#e8c27a" stroke-width="1.6" stroke-dasharray="4 3"/><text x="32" y="43" font-family="Georgia,serif" font-size="32" font-weight="700" text-anchor="middle" fill="#e8c27a">P</text></svg><span><b>Pure Leather Shop</b><small>Premium leather goods</small></span></a>
 <nav aria-label="Main"><a href="#home">Home</a><a href="#showroom">3D showroom</a><a href="#catalogue">Catalogue</a><a href="#orders">Orders</a><a href="#help">Support</a><a href="#cart">Cart (<span id="cc" aria-live="polite">0</span>)</a></nav></header>
 <main id="app" tabindex="-1"></main>
 <div id="toast" role="status"></div>
-<footer><a href="#policy">Privacy, terms, shipping and returns</a><a href="#help">Contact</a><p style="flex-basis:100%;margin:10px 0 0;padding-top:12px;border-top:1px solid var(--ln)">© 2026 Glowminds AI Technologies Private Limited. All rights reserved. Pure Leather Shop is a product of Glowminds AI Technologies Private Limited. Designed and developed by <a href="https://knrtech.in" target="_blank" rel="noopener noreferrer">KNR Tech Solutions</a>. Copying, scraping, cloning or using this site, its code, text, images or design to train AI or any other system is strictly prohibited without written permission.</p></footer>
+<footer><a href="#policy">Privacy, terms, shipping and returns</a><a href="#help">Contact</a><p style="flex-basis:100%;margin:10px 0 0;padding-top:12px;border-top:1px solid var(--ln)">© 2026 Glowminds AI Technologies Private Limited. All rights reserved. Pure Leather Shop is a product of Glowminds AI Technologies Private Limited. Designed and developed by <a href="https://knrtech.in" target="_blank" rel="noopener noreferrer">KNR Tech Solutions</a> (<a href="mailto:narayana@knrtech.in">narayana@knrtech.in</a>). Copying, scraping, cloning or using this site, its code, text, images or design to train AI or any other system is strictly prohibited without written permission.</p></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /*
@@ -196,7 +220,7 @@ policy:()=>`<h1>Policies</h1><div class="note">Placeholder text. Have a lawyer r
 };
 function qty(id,d){cart[id]=(cart[id]||0)+d;const p=P.find(x=>x.id==id);if(cart[id]>p.stock)cart[id]=p.stock;if(cart[id]<=0)delete cart[id];saveCart();route()}
 // ---- Router (hash based) ----
-function route(){if(clean){clean();clean=null}const h=location.hash.slice(1)||"home",[k,a]=h.split("-");let v=h;app.className="";
+function route(){if(clean){clean();clean=null}const h=location.hash.slice(1)||"home",[k,a]=h.split("-");let v=h;app.className="";document.body.classList.toggle("sr",h=="showroom");
  document.querySelectorAll("nav:not(.chips) a").forEach(x=>x.getAttribute("href")==="#"+(k=="cat"||k=="product"?"catalogue":h)?x.setAttribute("aria-current","page"):x.removeAttribute("aria-current"));
  if(h=="showroom"){app.className="full";return showroom()}
  app.innerHTML=k=="cat"?views.catalogue(a):k=="product"?views.product(a):(views[h]||views.home)();
@@ -205,12 +229,16 @@ function route(){if(clean){clean();clean=null}const h=location.hash.slice(1)||"h
   f.querySelectorAll("input[required]").forEach(i=>{const bad=!i.value.trim()||(rules[i.id]&&!rules[i.id](i.value));$("#e-"+i.id).textContent=bad?"Enter a valid "+i.labels[0].textContent.toLowerCase():"";i.setAttribute("aria-invalid",bad);if(bad&&ok){ok=false;i.focus()}});
   if(!ok)return;const o=store.get("gm-orders",[]),t=totals();o.unshift({id:"GM"+Date.now().toString().slice(-6),date:new Date().toLocaleDateString("en-IN"),total:t.total,status:"Payment pending (demo)"});store.set("gm-orders",o);cart={};saveCart();location.hash="orders"}}
 // ---- 3D showroom (Three.js) ----
+function webglOK(){try{const c=document.createElement("canvas");return!!(window.WebGLRenderingContext&&(c.getContext("webgl")||c.getContext("experimental-webgl")))}catch{return false}}
 function showroom(){
- app.innerHTML=`<div id="sr"><canvas id="cv" aria-label="3D leather showroom. A catalogue alternative is available from the navigation."></canvas><div id="cross"></div><div id="hud"><strong>Showroom</strong><br><span>Click the room to look around. WASD or arrows to walk. Click a product to enlarge and buy it, or the sales manager for help. Esc frees the mouse.</span><br><a href="#catalogue">Skip 3D, use the catalogue</a></div><a id="cp" class="btn" href="#cart"></a><div id="lab"></div><div id="joy" aria-label="Move joystick"><i></i></div><div id="pp"></div></div>`;
- const cv=$("#cv"),R=new THREE.WebGLRenderer({canvas:cv,antialias:!matchMedia("(pointer:coarse)").matches}),S=new THREE.Scene(),C=new THREE.PerspectiveCamera(70,1,.1,60);
+ if(typeof THREE=="undefined"||!webglOK()){app.className="";app.innerHTML=`<h1>3D showroom unavailable</h1><p>This device or browser cannot run the 3D view. You can still shop everything in the catalogue, and your cart is kept.</p><a class="btn" href="#catalogue">Open the catalogue</a>`;return}
+ // Reduced-detail mode for phones, tablets and low-core devices.
+ const LOW=matchMedia("(pointer:coarse)").matches||(navigator.hardwareConcurrency||4)<=4;
+ app.innerHTML=`<div id="sr"><canvas id="cv" aria-label="3D leather showroom. A catalogue alternative is available from the navigation."></canvas><div id="cross"></div><div id="hud"><strong>Showroom</strong><br><span class="hd">Click the room to look around. WASD or arrows to walk. Click a product to enlarge and buy it, or the sales manager for help. Esc frees the mouse.</span><span class="ht">Drag to look around, use the joystick to walk, tap a product to enlarge and buy it.</span><br><a href="#catalogue">Skip 3D, use the catalogue</a></div><a id="cp" class="btn" href="#cart"></a><div id="lab"></div><div id="joy" aria-label="Move joystick"><i></i></div><div id="pp"></div></div>`;
+ const cv=$("#cv"),R=new THREE.WebGLRenderer({canvas:cv,antialias:!LOW}),S=new THREE.Scene(),C=new THREE.PerspectiveCamera(70,1,.1,60);
  S.background=new THREE.Color("#1a0f08");S.fog=new THREE.Fog("#1a0f08",12,34);C.rotation.order="YXZ";C.position.set(0,1.6,7.5);
  S.add(new THREE.AmbientLight("#ffe2b8",.85));S.add(new THREE.HemisphereLight("#fff0d0","#3b2616",.4));
- [[0,2.8,-6],[0,2.8,0],[0,2.8,6]].forEach(p=>{const l=new THREE.PointLight("#ffcf8a",1,16);l.position.set(...p);S.add(l)});
+ (LOW?[[0,2.8,0]]:[[0,2.8,-6],[0,2.8,0],[0,2.8,6]]).forEach(p=>{const l=new THREE.PointLight("#ffcf8a",LOW?1.6:1,16);l.position.set(...p);S.add(l)});
  const mat=c=>new THREE.MeshStandardMaterial({color:c,roughness:.7}),box=(w,h,d,c,x,y,z)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),typeof c=="string"?mat(c):c);m.position.set(x,y,z);S.add(m);return m};
  const ctex=(w,h,fn,rx,ry)=>{const c=document.createElement("canvas");c.width=w;c.height=h;fn(c.getContext("2d"),w,h);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=4;return t};
  const panel=ctex(256,512,(x,w,h)=>{x.fillStyle="#3d2415";x.fillRect(0,0,w,h);for(let i=0;i<40;i++){x.fillStyle=`rgba(${i%2?255:0},${i%2?200:0},${i%2?140:0},.04)`;x.fillRect(Math.random()*w,0,2,h)}x.strokeStyle="#c29a4a";x.lineWidth=3;x.strokeRect(24,30,w-48,h*.62);x.strokeStyle="#5e3a20";x.lineWidth=6;x.strokeRect(36,42,w-72,h*.62-24);x.fillStyle="#2a190d";x.fillRect(0,h*.78,w,h*.22);x.fillStyle="#c29a4a";x.fillRect(0,h*.78,w,4)},1,1);
@@ -234,7 +262,7 @@ function showroom(){
  for(let x=-8;x<=8;x+=2)box(.07,3.5,.07,brass,x,1.75,9.96);box(16,.07,.07,brass,0,2.7,9.96);box(16,.1,.1,brass,0,.05,9.96);
  [-5,0,5].forEach(x=>[-8,-4,0,4,8].forEach(z=>{const d=new THREE.Mesh(new THREE.CircleGeometry(.1,16),new THREE.MeshBasicMaterial({color:"#fff3d6"}));d.rotation.x=Math.PI/2;d.position.set(x,3.47,z);S.add(d)}));
  [-7.8,7.8].forEach(x=>box(.14,.06,20,new THREE.MeshBasicMaterial({color:"#ffdca0"}),x,3.36,0));
- const L2=new THREE.PointLight("#ffcf8a",1.2,14);L2.position.set(0,2.6,-8);S.add(L2);
+ if(!LOW){const L2=new THREE.PointLight("#ffcf8a",1.2,14);L2.position.set(0,2.6,-8);S.add(L2)}
  const vit=(x,z,w,d)=>{box(w,.75,d,"#4a2c17",x,.375,z);const g=new THREE.BoxGeometry(w,.6,d),m=new THREE.Mesh(g,glassM);m.position.set(x,1.05,z);S.add(m);const e=new THREE.LineSegments(new THREE.EdgesGeometry(g),new THREE.LineBasicMaterial({color:"#d4a94a"}));e.position.copy(m.position);S.add(e);[["#7a3b24",-.3],["#2f1c10",0],["#a3732f",.3]].forEach(([c,o])=>box(.28,.16,.2,c,x+o*w/1.4,.84,z))};
  vit(0,-3,2.6,1.2);vit(-3.6,.5,1.6,1);vit(3.6,.5,1.6,1);
  box(3,1,1,"#5a3820",0,.5,3);box(3.1,.06,1.1,"#2a1a10",0,1.03,3);box(.5,.35,.04,"#111",.9,1.28,3);plane(1.2,.22,basic(tex("SALES MANAGER",480,88,34)),0,.62,3.52);
@@ -253,16 +281,19 @@ function showroom(){
   const bk=box(.9,.7,.04,"#b8923f",x-nx*.03,1.5,z-nz*.03);bk.rotation.y=ry;backs.push(bk);
   const l=plane(.9,.16,basic(tex(p.name.slice(0,24),288,52,24)),x+nx*.05,1.08,z+nz*.05,0,ry);items.push(m)});
  let yaw=0,pitch=0,keys={},jx=0,jy=0,tw=null,drag=null,lock=false,raf,mx=99,my=0,hov=null,rc=new THREE.Raycaster();
- const size=()=>{const r=cv.parentElement;R.setSize(r.clientWidth,r.clientHeight,false);R.setPixelRatio(Math.min(devicePixelRatio,1.5));C.aspect=r.clientWidth/r.clientHeight;C.updateProjectionMatrix()};size();
+ const size=()=>{const r=cv.parentElement;r.style.height=Math.max(300,innerHeight-r.getBoundingClientRect().top)+"px";R.setSize(r.clientWidth,r.clientHeight,false);R.setPixelRatio(Math.min(devicePixelRatio,LOW?1:1.5));C.aspect=r.clientWidth/r.clientHeight;C.updateProjectionMatrix()};size();
  const offs=[],on=(t,e,f,o)=>{t.addEventListener(e,f,o);offs.push(()=>t.removeEventListener(e,f,o))};
- on(window,"resize",size);on(window,"keydown",e=>{keys[e.code]=1;if(e.code=="Escape")$("#pp").style.display="none"});on(window,"keyup",e=>keys[e.code]=0);
+ on(window,"resize",size);on(window,"keydown",e=>{keys[e.code]=1;if(e.code=="Escape")$("#pp").style.display="none";
+  // Stop the arrow keys and space from also scrolling the page while walking.
+  if(!ppOpen()&&["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Space"].includes(e.code)&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))e.preventDefault()});
+ on(window,"blur",()=>{keys={}});on(cv,"webglcontextlost",e=>{e.preventDefault();toast("The 3D view paused. Reload the page to continue.")});on(window,"keyup",e=>keys[e.code]=0);
  on(document,"pointerlockchange",()=>lock=document.pointerLockElement===cv);
  on(document,"mousemove",e=>{if(lock){yaw-=e.movementX*.002;pitch=Math.max(-1.2,Math.min(1.2,pitch-e.movementY*.002))}});
  const MGR={mgr:1},pick=(x,y)=>{rc.setFromCamera({x,y},C);const h=rc.intersectObjects(items.concat(mg))[0];if(!h||h.distance>9)return null;const i=items.indexOf(h.object);return i<0?MGR:P[i]};
  on(cv,"pointerdown",e=>{drag={x:e.clientX,y:e.clientY,moved:0}});
- on(cv,"pointermove",e=>{const r=cv.getBoundingClientRect();if(e.pointerType=="mouse"&&!lock){mx=(e.clientX-r.left)/r.width*2-1;my=-((e.clientY-r.top)/r.height)*2+1}if(drag&&e.pointerType!="mouse"){yaw-=(e.clientX-drag.x)*.005;pitch=Math.max(-1.2,Math.min(1.2,pitch-(e.clientY-drag.y)*.005));drag.moved+=Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y);drag.x=e.clientX;drag.y=e.clientY}});
+ on(cv,"pointermove",e=>{const r=cv.getBoundingClientRect();if(e.pointerType=="mouse"&&!lock){mx=(e.clientX-r.left)/r.width*2-1;my=-((e.clientY-r.top)/r.height)*2+1}if(drag&&(e.pointerType!="mouse"||!cv.requestPointerLock)){yaw-=(e.clientX-drag.x)*.005;pitch=Math.max(-1.2,Math.min(1.2,pitch-(e.clientY-drag.y)*.005));drag.moved+=Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y);drag.x=e.clientX;drag.y=e.clientY}});
  on(cv,"pointerup",e=>{if(!drag||drag.moved>8){drag=null;return}drag=null;const r=cv.getBoundingClientRect(),touch=e.pointerType!="mouse",p=pick(lock?0:(e.clientX-r.left)/r.width*2-1,lock?0:-((e.clientY-r.top)/r.height)*2+1);
-  if(p)inspect(p);else if(!touch&&!lock)cv.requestPointerLock()});
+  if(p)inspect(p);else if(!touch&&!lock&&cv.requestPointerLock)cv.requestPointerLock()});
  function inspect(p){const pp=$("#pp");let t;if(p.mgr)t={x:0,z:4.9,yaw:0};else{const[nx,nz]=p.n,m=items[p.id-1];t={x:m.position.x+nx*1.7,z:m.position.z+nz*1.7,yaw:Math.atan2(nx,nz)}}
   tw={x0:C.position.x,z0:C.position.z,y0:yaw,t,s:performance.now()};if(document.pointerLockElement)document.exitPointerLock();pp.style.display="grid";
   pp.innerHTML=p.mgr?`<div class="box" role="dialog" aria-modal="true" aria-label="Sales manager"><img src="${MGR_IMG}" alt="Sales manager" style="max-width:200px;max-height:60vh;width:auto;margin:auto;display:block;background:none"><div><h2>Sales manager</h2><p>Need help with a product, your order or delivery? Email <a href="mailto:narayana@knrtech.in">narayana@knrtech.in</a>.</p><p><a class="btn" href="#cart">Go to cart</a> <button class="btn ghost" id="cl">Close</button></p></div></div>`:`<div class="box" role="dialog" aria-modal="true" aria-label="${p.name}"><img src="${img(p)}" alt="${p.name}, ${p.mat}"><div><h2>${p.name}</h2><p class="mut">${CATS[p.cat]}</p><p class="price" style="font-size:1.4rem">${inr(pr(p))} ${p.disc?`<s>${inr(p.price)}</s> (${p.disc}% off)`:""}</p><p>${p.mat}<br>Dimensions: ${p.dim}<br>${p.stock?p.stock+" in stock":"Sold out"}</p><p><button class="btn" id="ad" ${p.stock?"":"disabled"}>Add to cart</button> <button class="btn ghost" id="bn" ${p.stock?"":"disabled"}>Buy now</button> <a class="btn ghost" href="#cart">Go to cart</a></p><p><a href="#product-${p.id}">Full details</a> <button class="btn ghost" id="cl">Close</button></p></div></div>`;
